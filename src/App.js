@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Edit from './components/Edit';
 import Play from './components/Play';
 
@@ -11,6 +12,10 @@ const App = ({ mode }) => {
     content = <Play />;
   }
   return <div className="app">{content}</div>;
+};
+
+App.propTypes = {
+  mode: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
