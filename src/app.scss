@@ -1,42 +1,50 @@
+/* Fonts */ 
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'), url(../dist/fonts/Roboto-Regular.ttf) format('truetype');
+}
+
+/* Color palette */
+:root{
+  --gray: #787878;
+  --gray-dark: #5F605F;
+  --gray-light: #959494;
+  --green: #A0FB80;
+  --blue: #6891F1;
+  --red: #FC4C4C;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
-  text-align: center;
+
+
+.app{
+  border: 1px solid blue;
+  width: 70vw;
+  height: 100vh;
+  margin: 0 auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.app-content{
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.column{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }

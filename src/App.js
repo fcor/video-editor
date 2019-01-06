@@ -1,17 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Edit from './components/Edit';
-import Play from './components/Play';
+import VideoSection from './components/VideoSection';
+import Header from './components/Header';
+import Playlist from './components/Playlist';
+import './app.scss';
 
 const App = ({ mode }) => {
-  let content;
-  if (mode === 'EDITING') {
-    content = <Edit />;
-  } else {
-    content = <Play />;
-  }
-  return <div className="app">{content}</div>;
+  return (
+    <div className="app column">
+      <Header />
+      <section className="app-content row">
+        <VideoSection />
+        <Playlist />
+      </section>
+    </div>
+  );
 };
 
 App.propTypes = {
