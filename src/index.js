@@ -1,19 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles.scss';
+import { Provider } from 'react-redux';
+import configureStore from './stores/configureStore';
+import App from './App';
 
-const App = () => (
-  <div className="App">
-    <header className="App-header">
-      <img src="../dist/images/logo.svg" className="App-logo" alt="logo" />
-      <p>
-        Welcome to this React boilerplate. <br /> Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        React Docs
-      </a>
-    </header>
-  </div>
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
 );
-
-ReactDOM.render(<App />, document.getElementById('app'));
