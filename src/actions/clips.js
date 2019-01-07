@@ -18,7 +18,6 @@ export const editClip = (clip, index) => ({
 export const deleteClip = (clip, index) => ({
   type: actionTypes.DELETE_CLIP,
   payload: {
-    clip,
     index,
   },
 });

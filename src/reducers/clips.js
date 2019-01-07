@@ -13,13 +13,22 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.SAVE_NEW_CLIP:
+    case actionTypes.SAVE_NEW_CLIP: {
       const clips = state.clipList;
       const newClip = action.payload.clip;
       return {
         ...state,
         clipList: [...clips, newClip],
       };
+    }
+    case actionTypes.DELETE_CLIP: {
+      const clips = state.clipList;
+      clips.splice(action.payload.index, 1);
+      return {
+        ...state,
+        clipList: clips,
+      };
+    }
     default:
       return state;
   }

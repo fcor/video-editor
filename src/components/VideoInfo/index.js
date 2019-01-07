@@ -18,6 +18,7 @@ class VideoInfo extends React.Component {
     this.handleTyping = this.handleTyping.bind(this);
     this.handleDiscard = this.handleDiscard.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleTyping(e, field) {
@@ -59,6 +60,11 @@ class VideoInfo extends React.Component {
     });
   }
 
+  handleDelete() {
+    const { actions } = this.props;
+    actions.deleteClip(0);
+  }
+
   render() {
     const { mode } = this.props;
     const { start, end, name } = this.state;
@@ -72,6 +78,7 @@ class VideoInfo extends React.Component {
           handleDiscard={this.handleDiscard}
           handleSave={this.handleSave}
           handleTyping={this.handleTyping}
+          handleDelete={this.handleDelete}
         />
       );
     } else {

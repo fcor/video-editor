@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from './Input';
 
-const Edit = ({ handleTyping, handleSave, handleDiscard, start, end, name }) => (
+const Edit = ({ handleTyping, handleSave, handleDiscard, handleDelete, start, end, name }) => (
   <div>
     <Input variant="start" value={start} handleTyping={handleTyping} />
     <Input variant="end" value={end} handleTyping={handleTyping} />
@@ -12,6 +12,9 @@ const Edit = ({ handleTyping, handleSave, handleDiscard, start, end, name }) => 
     </button>
     <button type="submit" onClick={handleDiscard}>
       Discard
+    </button>
+    <button type="submit" onClick={handleDelete}>
+      Delete
     </button>
   </div>
 );
