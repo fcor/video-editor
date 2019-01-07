@@ -26,3 +26,45 @@
   width: 100%;
   justify-content: space-around !important;
 }
+
+.video-info-details{
+  animation: animationIn .25s ease-in forwards;
+  color: var(--gray);
+
+  .clip-details{
+    justify-content: space-between !important;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  h1{
+    margin: 0;
+    font-size: 27px;
+  }
+
+  p{
+    margin: 0;
+    font-size: 27px;
+    font-weight: bold;
+  }
+}
+
+.video-info-hotkeys{
+  align-items: flex-start !important;
+  width: 100%;
+  color: #AEAEAE;
+    h1{
+      margin: 0 0 10px 0;
+      font-size: 16px;
+    }
+    
+    p{
+      margin: 0 15px 0 0;
+      font-size: 16px;
+    }
+
+    .hotkeys-details{
+      width: 100%;
+      justify-content: flex-start !important;
+    }
+}

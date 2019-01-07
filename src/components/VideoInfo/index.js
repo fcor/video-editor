@@ -95,7 +95,7 @@ class VideoInfo extends React.Component {
         />
       );
     } else {
-      content = <Info />;
+      content = <Info clipName="Blender" duration="0:52" />;
     }
     return <div className="video-info">{content}</div>;
   }
