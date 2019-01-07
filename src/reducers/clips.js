@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
       };
     }
     case actionTypes.DELETE_CLIP: {
-      const clips = state.clipList;
+      const clips = [...state.clipList];
       clips.splice(action.payload.index, 1);
       return {
         ...state,

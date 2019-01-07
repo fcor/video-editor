@@ -1,6 +1,67 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+import * as actions from '../../actions';
+import Thumbnail from './Thumbnail';
 import './styles.scss';
 
-const Playlist = () => <div>Playlist</div>;
+class Playlist extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
 
-export default Playlist;
+  handleDelete(index) {
+    const { actions } = this.props;
+    actions.deleteClip(index);
+  }
+
+  render() {
+    const { mode, clips } = this.props;
+    return (
+      <div className="playlist column">
+        <Thumbnail
+          cantDelete
+          clip={clips.fullVideoDetails}
+          mode={mode}
+          handleDelete={this.handleDelete}
+        />
+        {clips.clipList.map((item, index) => (
+          <Thumbnail
+            key={item.name}
+            clip={item}
+            mode={mode}
+            handleDelete={this.handleDelete}
+            index={index}
+          />
+        ))}
+      </div>
+    );
+  }
+}
+
+Playlist.propTypes = {
+  clips: PropTypes.object.isRequired,
+  mode: PropTypes.string.isRequired,
+};
+
+function mapStateToProps(state) {
+  const mode = state.mode.mode;
+  const clips = state.clips;
+  return {
+    mode,
+    clips,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Playlist);

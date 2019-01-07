@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 import Input from '../Input';
 import Button from '../Button';
 
-const Edit = ({
-  handleTyping,
-  handleSave,
-  handleDiscard,
-  handleDelete,
-  handleEdit,
-  start,
-  end,
-  name,
-}) => (
+const Edit = ({ handleTyping, handleSave, handleDiscard, handleEdit, start, end, name }) => (
   <div className="video-info-edit column">
     <div className="video-info-inputs row">
       <Input variant="name" value={name} handleTyping={handleTyping} />
@@ -29,9 +20,6 @@ const Edit = ({
       <Button onClick={handleDiscard} variant="discard">
         DISCARD
       </Button>
-      <Button onClick={handleDelete} variant="delete">
-        DELETE
-      </Button>
     </div>
   </div>
 );
@@ -40,7 +28,6 @@ Edit.propTypes = {
   handleTyping: PropTypes.func.isRequired,
   handleSave: PropTypes.func.isRequired,
   handleDiscard: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
   handleEdit: PropTypes.func.isRequired,
   start: PropTypes.string.isRequired,
   end: PropTypes.string.isRequired,
