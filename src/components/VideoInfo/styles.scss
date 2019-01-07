@@ -2,5 +2,17 @@
   border: 1px dashed grey;
   width: 100%;
   height: 90px;
+  padding-top: 20px;
 }
 
+.video-info-inputs{
+  width: 100%;
+  justify-content: flex-start !important;
+  align-items: flex-end !important;
+}
+
+.video-info-inputs-numbers{
+  justify-content: space-between !important;
+  width: 200px;
+  margin-left: 100px;
+}

@@ -13,9 +13,13 @@ const Edit = ({
   name,
 }) => (
   <div>
-    <Input variant="start" value={start} handleTyping={handleTyping} />
-    <Input variant="end" value={end} handleTyping={handleTyping} />
-    <Input variant="name" value={name} handleTyping={handleTyping} />
+    <div className="video-info-inputs row">
+      <Input variant="name" value={name} handleTyping={handleTyping} />
+      <div className="video-info-inputs-numbers row">
+        <Input variant="start" value={start} handleTyping={handleTyping} />
+        <Input variant="end" value={end} handleTyping={handleTyping} />
+      </div>
+    </div>
     <button type="submit" onClick={handleSave}>
       Save new
     </button>
