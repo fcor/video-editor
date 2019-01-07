@@ -29,6 +29,14 @@ export default function(state = initialState, action) {
         clipList: clips,
       };
     }
+    case actionTypes.EDIT_CLIP: {
+      const clips = state.clipList;
+      clips.splice(action.payload.index, 1, action.payload.clip);
+      return {
+        ...state,
+        clipList: clips,
+      };
+    }
     default:
       return state;
   }
