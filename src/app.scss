@@ -22,17 +22,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 .app{
   border: 1px solid blue;
-  width: 70vw;
+  width: 1100px;;
   height: 100vh;
   margin: 0 auto;
 }
 
 .app-content{
-
+ width: 100%;
+ justify-content: flex-start !important;
 }
 
 .column{

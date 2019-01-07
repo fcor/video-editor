@@ -1,0 +1,37 @@
+.videoplayer{
+  width: 800px;
+  // height: 600px;
+  border: 1px solid red;
+}
+
+.video-container{
+  width: 100%;
+  // height: 500px;
+  // background-color: black;
+  margin: 0;
+}
+
+video{
+  width: 100%;
+}
+
+.video-controls{
+  width: 100%;
+}
+
+.video-controls-play{
+  width: 40px;
+  cursor: pointer;
+  margin: 15px 0;
+}
+
+progress{
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+
+  border: none;
+}
+
+
