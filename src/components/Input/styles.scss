@@ -27,10 +27,20 @@ input[type="number"] {
 
 .input-container.text{
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
+
+    input{
+      border: none;
+      color: var(--gray);
+      width: 200px;
+      // height: 24px;
+      padding: 3px 1px;
+      border-bottom: 1px solid var(--gray-dark);
+    }
 }
+
 
 .input-labels{
   color: var(--gray);
