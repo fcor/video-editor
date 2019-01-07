@@ -1,0 +1,38 @@
+.button{
+  text-align: center;
+  padding: 5px 0 8px 0;
+  border: none;
+  color: #5E5D5D;
+  margin: 5px;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: 0;
+  transition: .2s;
+  will-change:transform;
+  width: 150px;
+  font-size: 16px;
+}
+
+.button:active{
+  transform: scale(.9);
+}
+
+.button.classic {
+  background: var(--green);
+}
+
+.button.edit{
+  background: transparent;
+  border: 3px solid var(--green);
+}
+
+.button.discard{
+  background: transparent;
+  border: 3px solid var(--red);
+  color: var(--red);
+}
+
+.button.delete{
+  background: var(--red);
+  color: white;
+}

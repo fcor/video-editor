@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../Input';
+import Button from '../Button';
 
 const Edit = ({
   handleTyping,
@@ -12,7 +13,7 @@ const Edit = ({
   end,
   name,
 }) => (
-  <div>
+  <div className="video-info-edit column">
     <div className="video-info-inputs row">
       <Input variant="name" value={name} handleTyping={handleTyping} />
       <div className="video-info-inputs-numbers row">
@@ -20,18 +21,18 @@ const Edit = ({
         <Input variant="end" value={end} handleTyping={handleTyping} />
       </div>
     </div>
-    <button type="submit" onClick={handleSave}>
-      Save new
-    </button>
-    <button type="submit" onClick={handleDiscard}>
-      Discard
-    </button>
-    <button type="submit" onClick={handleDelete}>
-      Delete
-    </button>
-    <button type="submit" onClick={handleEdit}>
-      Save changes
-    </button>
+    <div className="video-info-buttons row">
+      <Button onClick={handleSave}>SAVE NEW CLIP</Button>
+      <Button onClick={handleEdit} variant="edit">
+        SAVE CHANGES
+      </Button>
+      <Button onClick={handleDiscard} variant="discard">
+        DISCARD
+      </Button>
+      <Button onClick={handleDelete} variant="delete">
+        DELETE
+      </Button>
+    </div>
   </div>
 );
 
@@ -39,6 +40,8 @@ Edit.propTypes = {
   handleTyping: PropTypes.func.isRequired,
   handleSave: PropTypes.func.isRequired,
   handleDiscard: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  handleEdit: PropTypes.func.isRequired,
   start: PropTypes.string.isRequired,
   end: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
