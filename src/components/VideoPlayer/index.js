@@ -25,8 +25,9 @@ class VideoPlayer extends React.Component {
   }
 
   handleTimeUpdate() {
+    const { clip } = this.props;
     const currentTime = this.video.current.currentTime;
-    const currentTimeinPC = getTimeinPC(currentTime, 52);
+    const currentTimeinPC = getTimeinPC(currentTime - clip.start, clip.end - clip.start);
 
     this.setState({
       currentTimeinPC,
