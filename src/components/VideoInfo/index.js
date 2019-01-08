@@ -102,7 +102,7 @@ class VideoInfo extends React.Component {
   }
 
   render() {
-    const { mode } = this.props;
+    const { mode, clips } = this.props;
     const { start, end, name } = this.state;
     let content;
     if (mode === 'EDITING') {
@@ -119,7 +119,18 @@ class VideoInfo extends React.Component {
         />
       );
     } else {
-      content = <Info clipName="Blender" duration="0:52" />;
+      let clipName;
+      let duration;
+      if (clips.selectedClip === 1000) {
+        clipName = clips.fullVideoDetails.name;
+        duration = clips.fullVideoDetails.end - clips.fullVideoDetails.start;
+      } else {
+        const index = clips.selectedClip;
+        clipName = clips.clipList[index].name;
+        duration = clips.clipList[index].end - clips.clipList[index].start;
+      }
+
+      content = <Info clipName={clipName} duration={duration} />;
     }
     return <div className="video-info">{content}</div>;
   }

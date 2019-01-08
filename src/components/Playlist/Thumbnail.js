@@ -8,6 +8,11 @@ const shouldDisplayButton = (mode, cantDelete) => {
   return true;
 };
 
+const durationInSeconds = duration => {
+  if (duration < 10) return `0${duration}`;
+  return duration;
+};
+
 const Thumbnail = ({
   clip,
   mode,
@@ -18,6 +23,7 @@ const Thumbnail = ({
   index,
 }) => {
   const displayButton = shouldDisplayButton(mode, cantDelete);
+  const duration = clip.end - clip.start;
   let selected = '';
   if (isSelected) selected = 'selected';
   return (
@@ -26,7 +32,7 @@ const Thumbnail = ({
       <div className="info row">
         <div className="details column">
           <h1>{clip.name}</h1>
-          <p>{`00:${clip.end - clip.start}`}</p>
+          <p>{`00:${durationInSeconds(duration)}`}</p>
         </div>
         {displayButton && (
           <Button onClick={() => handleDelete(index)} variant="delete">
