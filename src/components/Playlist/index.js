@@ -44,6 +44,7 @@ class Playlist extends React.Component {
 
 Playlist.propTypes = {
   clips: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
   mode: PropTypes.string.isRequired,
 };
 

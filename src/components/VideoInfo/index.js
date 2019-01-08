@@ -2,10 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
+import Swal from 'sweetalert2';
 import * as actions from '../../actions';
 import Edit from './Edit';
 import Info from './Info';
 import './styles.scss';
+import { canSaveClip, isClipNameUnique, showErrorMsg } from './utils';
 
 class VideoInfo extends React.Component {
   constructor(props) {
@@ -30,26 +32,46 @@ class VideoInfo extends React.Component {
 
   handleSave() {
     const { start, end, name } = this.state;
-    const { actions } = this.props;
+    const { actions, clips } = this.props;
 
     if (!(start && end && name)) {
-      console.log('Cant Save');
+      Swal({
+        title: 'Oops!',
+        text: 'Enter the data to continue',
+        type: 'error',
+        confirmButtonText: 'Ok',
+      });
     } else {
-      // console.log('Clip saved');
-
-      const newClip = {
-        name,
-        start,
-        end,
-      };
-
-      actions.saveNewClip(newClip);
-      //   this.setState({
-      //     clips: [...clips, newClip],
-      //     start: '',
-      //     end: '',
-      //     name: '',
-      //   });
+      const saveClip = canSaveClip(start, end);
+      const clipNameUnique = isClipNameUnique(name, clips.clipList);
+      if (saveClip && clipNameUnique) {
+        const newClip = {
+          name,
+          start,
+          end,
+        };
+        actions.saveNewClip(newClip);
+        Swal({
+          position: 'top-end',
+          type: 'success',
+          title: 'Your clip has been created',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        this.setState({
+          start: '',
+          end: '',
+          name: '',
+        });
+      } else {
+        Swal({
+          title: 'Oops!',
+          text:
+            'Something is wrong. Check out the data you entered, remember that clip names must be unique',
+          type: 'error',
+          confirmButtonText: 'Ok',
+        });
+      }
     }
   }
 
@@ -104,12 +126,15 @@ class VideoInfo extends React.Component {
 VideoInfo.propTypes = {
   mode: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
+  clips: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   const mode = state.mode.mode;
+  const clips = state.clips;
   return {
     mode,
+    clips,
   };
 }
 

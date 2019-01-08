@@ -38,6 +38,7 @@
   width: 70px;
   font-size: 10px;
   margin: 0;
+  animation: animationIn .3s ease-in forwards;
 }
 
 button::-moz-focus-inner {
