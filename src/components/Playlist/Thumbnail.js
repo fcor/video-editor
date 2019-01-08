@@ -8,11 +8,20 @@ const shouldDisplayButton = (mode, cantDelete) => {
   return true;
 };
 
-const Thumbnail = ({ clip, mode, handleSelectedClip, handleDelete, cantDelete, index }) => {
+const Thumbnail = ({
+  clip,
+  mode,
+  isSelected,
+  handleSelectedClip,
+  handleDelete,
+  cantDelete,
+  index,
+}) => {
   const displayButton = shouldDisplayButton(mode, cantDelete);
-
+  let selected = '';
+  if (isSelected) selected = 'selected';
   return (
-    <div className="thumbnail column" onClick={() => handleSelectedClip(index)}>
+    <div className={`thumbnail column ${selected}`} onClick={() => handleSelectedClip(index)}>
       <img src={clip.thumbnail} alt="Thumbnail" />
       <div className="info row">
         <div className="details column">
@@ -39,6 +48,7 @@ Thumbnail.propTypes = {
   handleSelectedClip: PropTypes.func.isRequired,
   clip: PropTypes.object.isRequired,
   mode: PropTypes.string.isRequired,
+  isSelected: PropTypes.bool.isRequired,
   cantDelete: PropTypes.bool,
   index: PropTypes.number,
 };

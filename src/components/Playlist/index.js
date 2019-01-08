@@ -25,6 +25,10 @@ class Playlist extends React.Component {
 
   render() {
     const { mode, clips } = this.props;
+    const isSelected = (index, selectedClip) => {
+      if (index === selectedClip) return true;
+      return false;
+    };
     return (
       <div className="playlist column">
         <Thumbnail
@@ -33,6 +37,7 @@ class Playlist extends React.Component {
           mode={mode}
           handleDelete={this.handleDelete}
           handleSelectedClip={this.handleSelectedClip}
+          isSelected={isSelected(1000, clips.selectedClip) && clips.clipList.length > 0}
         />
         {clips.clipList.length > 0 && <hr />}
         {clips.clipList.map((item, index) => (
@@ -43,6 +48,7 @@ class Playlist extends React.Component {
             handleDelete={this.handleDelete}
             handleSelectedClip={this.handleSelectedClip}
             index={index}
+            isSelected={isSelected(index, clips.selectedClip)}
           />
         ))}
       </div>

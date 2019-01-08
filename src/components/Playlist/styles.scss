@@ -13,7 +13,10 @@
 .thumbnail{
   width: 260px;
   margin-bottom: 20px;
+  padding: 8px;
   animation: animationIn .3s ease-in forwards;
+  transition: 0.3s;
+  will-change: background-color;
   cursor: pointer;
   img {
     width: 100%;
@@ -45,6 +48,18 @@
 
 .thumbnail:first-of-type{
   margin-bottom: 5px;
+}
+
+.thumbnail.selected{
+  background-color: var(--blue);
+
+  h1{
+   color: white;
+  }
+
+  p{
+   color: white;
+  }
 }
 
 hr{
