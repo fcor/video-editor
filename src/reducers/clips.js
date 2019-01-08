@@ -1,12 +1,12 @@
 import * as actionTypes from '../constants/actionTypes';
 
 const initialState = {
-  selectedClip: '',
+  selectedClip: 1000,
   clipList: [],
   baseURL: '../dist/videos/blender.mp4',
   fullVideoDetails: {
-    start: '0',
-    end: '52',
+    start: 0,
+    end: 52,
     name: 'Full Video',
     thumbnail: '../dist/images/tn11.png',
   },
@@ -36,6 +36,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         clipList: clips,
+      };
+    }
+    case actionTypes.SELECT_CLIP: {
+      const selectedClip = action.payload.index;
+      return {
+        ...state,
+        selectedClip,
       };
     }
     default:

@@ -2,24 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import './styles.scss';
-import getThumbnail from './utils';
 
 const shouldDisplayButton = (mode, cantDelete) => {
   if (cantDelete || mode === 'PLAYING') return false;
   return true;
 };
 
-const Thumbnail = ({ clip, mode, handleDelete, cantDelete, index }) => {
+const Thumbnail = ({ clip, mode, handleSelectedClip, handleDelete, cantDelete, index }) => {
   const displayButton = shouldDisplayButton(mode, cantDelete);
-  // let thumbnail;
-  // if (cantDelete) {
-  //   thumbnail = '../dist/images/tn11.png';
-  // } else {
-  //   thumbnail = getThumbnail();
-  // }
 
   return (
-    <div className="thumbnail column">
+    <div className="thumbnail column" onClick={() => handleSelectedClip(index)}>
       <img src={clip.thumbnail} alt="Thumbnail" />
       <div className="info row">
         <div className="details column">
@@ -43,6 +36,7 @@ Thumbnail.defaultProps = {
 
 Thumbnail.propTypes = {
   handleDelete: PropTypes.func.isRequired,
+  handleSelectedClip: PropTypes.func.isRequired,
   clip: PropTypes.object.isRequired,
   mode: PropTypes.string.isRequired,
   cantDelete: PropTypes.bool,

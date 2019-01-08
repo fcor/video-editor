@@ -10,6 +10,12 @@ class Playlist extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleSelectedClip = this.handleSelectedClip.bind(this);
+  }
+
+  handleSelectedClip(index) {
+    const { actions } = this.props;
+    actions.selectClip(index);
   }
 
   handleDelete(index) {
@@ -26,6 +32,7 @@ class Playlist extends React.Component {
           clip={clips.fullVideoDetails}
           mode={mode}
           handleDelete={this.handleDelete}
+          handleSelectedClip={this.handleSelectedClip}
         />
         {clips.clipList.length > 0 && <hr />}
         {clips.clipList.map((item, index) => (
@@ -34,6 +41,7 @@ class Playlist extends React.Component {
             clip={item}
             mode={mode}
             handleDelete={this.handleDelete}
+            handleSelectedClip={this.handleSelectedClip}
             index={index}
           />
         ))}

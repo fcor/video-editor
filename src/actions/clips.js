@@ -21,3 +21,10 @@ export const deleteClip = index => ({
     index,
   },
 });
+
+export const selectClip = index => ({
+  type: actionTypes.SELECT_CLIP,
+  payload: {
+    index,
+  },
+});
