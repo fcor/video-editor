@@ -37,4 +37,9 @@
   color: white;
   width: 70px;
   font-size: 10px;
+  margin: 0;
+}
+
+button::-moz-focus-inner {
+  border: 0;
 }

@@ -27,6 +27,7 @@ class Playlist extends React.Component {
           mode={mode}
           handleDelete={this.handleDelete}
         />
+        {clips.clipList.length > 0 && <hr />}
         {clips.clipList.map((item, index) => (
           <Thumbnail
             key={item.name}
