@@ -28,6 +28,8 @@ export default function(state = initialState, action) {
       let selectedClip = state.selectedClip;
       if (action.payload.index === state.selectedClip) {
         selectedClip = 1000;
+      } else if (action.payload.index < state.selectedClip) {
+        selectedClip--;
       }
       return {
         ...state,
