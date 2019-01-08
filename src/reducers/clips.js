@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/actionTypes';
+import getNextVideo from './utils';
 
 const initialState = {
   selectedClip: 1000,
@@ -50,6 +51,16 @@ export default function(state = initialState, action) {
       return {
         ...state,
         selectedClip,
+      };
+    }
+    case actionTypes.NEXT_CLIP: {
+      const direction = action.payload.direction;
+      const clips = state.clipList;
+      const selectedClip = state.selectedClip;
+      const newClip = getNextVideo(clips, direction, selectedClip);
+      return {
+        ...state,
+        selectedClip: newClip,
       };
     }
     default:

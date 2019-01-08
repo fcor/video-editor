@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../../actions';
 import VideoControls from './VideoControls';
 import './styles.scss';
 
@@ -39,15 +41,25 @@ class VideoPlayer extends React.Component {
   }
 
   handleKeyPress(e) {
-    const key = e.key;
-    if (key === ' ') {
+    const key = e.code;
+    if (key === 'Space') {
       this.handlePlayback();
     }
+    if (key === 'KeyN') {
+      this.handleNextVideo('FORWARD');
+    }
+    if (key === 'KeyB') {
+      this.handleNextVideo('BACKWARD');
+    }
+  }
+
+  handleNextVideo(direction) {
+    const { actions } = this.props;
+    actions.nextClip(direction);
   }
 
   handlePlayback() {
     const { hasVideoEnded } = this.state;
-    const { clip } = this.props;
     if (this.video.current.paused) {
       if (hasVideoEnded) {
         // this.video.current.fastSeek(clip.start);
@@ -127,4 +139,13 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(VideoPlayer);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(VideoPlayer);

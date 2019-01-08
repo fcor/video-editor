@@ -28,3 +28,10 @@ export const selectClip = index => ({
     index,
   },
 });
+
+export const nextClip = direction => ({
+  type: actionTypes.NEXT_CLIP,
+  payload: {
+    direction,
+  },
+});
