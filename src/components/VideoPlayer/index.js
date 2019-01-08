@@ -19,6 +19,11 @@ class VideoPlayer extends React.Component {
     this.handlePlayback = this.handlePlayback.bind(this);
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
     this.handlePause = this.handlePause.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('keypress', this.handleKeyPress);
   }
 
   // setState should not be called in componentDidUpdate in favor
@@ -30,6 +35,13 @@ class VideoPlayer extends React.Component {
       this.setState({
         hasVideoEnded: false,
       });
+    }
+  }
+
+  handleKeyPress(e) {
+    const key = e.key;
+    if (key === ' ') {
+      this.handlePlayback();
     }
   }
 
