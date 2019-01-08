@@ -13,15 +13,41 @@ class VideoPlayer extends React.Component {
     super(props);
     this.state = {
       currentTimeinPC: 0,
+      hasVideoEnded: false,
     };
     this.video = React.createRef();
     this.handlePlayback = this.handlePlayback.bind(this);
     this.handleTimeUpdate = this.handleTimeUpdate.bind(this);
+    this.handlePause = this.handlePause.bind(this);
+  }
+
+  // setState should not be called in componentDidUpdate in favor
+  // of getDerivedStateFromProps, but I think here it's reasonable because
+  // getDerivedStateFromProps does not provide access to prevProps
+  componentDidUpdate(prevProps) {
+    const { clip } = this.props;
+    if (clip.name !== prevProps.clip.name) {
+      this.setState({
+        hasVideoEnded: false,
+      });
+    }
   }
 
   handlePlayback() {
-    if (this.video.current.paused || this.video.current.ended) this.video.current.play();
-    else this.video.current.pause();
+    const { hasVideoEnded } = this.state;
+    const { clip } = this.props;
+    if (this.video.current.paused) {
+      if (hasVideoEnded) {
+        // this.video.current.fastSeek(clip.start);
+        this.video.current.load();
+        this.video.current.play();
+        this.setState({
+          hasVideoEnded: false,
+        });
+      } else {
+        this.video.current.play();
+      }
+    } else this.video.current.pause();
   }
 
   handleTimeUpdate() {
@@ -32,6 +58,15 @@ class VideoPlayer extends React.Component {
     this.setState({
       currentTimeinPC,
     });
+  }
+
+  handlePause() {
+    const { currentTimeinPC } = this.state;
+    if (currentTimeinPC >= 100) {
+      this.setState({
+        hasVideoEnded: true,
+      });
+    }
   }
 
   render() {
@@ -49,7 +84,7 @@ class VideoPlayer extends React.Component {
             ref={this.video}
             // src={clip.url}
             type="video/mp4"
-            // onPause={onEnded}
+            onPause={this.handlePause}
             // onLoadedMetadata={this.handleLoadedMetadata}
             onTimeUpdate={this.handleTimeUpdate}
             // onKeyPress={this.handleKeyPress}

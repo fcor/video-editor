@@ -25,7 +25,7 @@ const Info = ({ clipName, duration }) => (
 
 Info.propTypes = {
   clipName: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired,
+  duration: PropTypes.number.isRequired,
 };
 
 export default Info;
