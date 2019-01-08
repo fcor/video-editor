@@ -7,7 +7,7 @@ import * as actions from '../../actions';
 import Edit from './Edit';
 import Info from './Info';
 import './styles.scss';
-import { canSaveClip, isClipNameUnique, showErrorMsg } from './utils';
+import { canSaveClip, isClipNameUnique, getThumbnail } from './utils';
 
 class VideoInfo extends React.Component {
   constructor(props) {
@@ -45,10 +45,12 @@ class VideoInfo extends React.Component {
       const saveClip = canSaveClip(start, end);
       const clipNameUnique = isClipNameUnique(name, clips.clipList);
       if (saveClip && clipNameUnique) {
+        const thumbnail = getThumbnail();
         const newClip = {
           name,
           start,
           end,
+          thumbnail,
         };
         actions.saveNewClip(newClip);
         Swal({
@@ -66,8 +68,8 @@ class VideoInfo extends React.Component {
       } else {
         Swal({
           title: 'Oops!',
-          text:
-            'Something is wrong. Check out the data you entered, remember that clip names must be unique',
+          text: `Something is wrong. Check out the data you entered, 
+                 remember that clip names must be unique`,
           type: 'error',
           confirmButtonText: 'Ok',
         });

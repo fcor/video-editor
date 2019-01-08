@@ -8,6 +8,7 @@ const initialState = {
     start: '0',
     end: '52',
     name: 'Full Video',
+    thumbnail: '../dist/images/tn11.png',
   },
 };
 

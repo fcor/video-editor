@@ -11,4 +11,9 @@ const isClipNameUnique = (name, clips) => {
   return true;
 };
 
-export { canSaveClip, isClipNameUnique };
+const getThumbnail = () => {
+  const number = Math.floor(Math.random() * 12) + 1;
+  return `../dist/images/tn${number}.png`;
+};
+
+export { canSaveClip, isClipNameUnique, getThumbnail };

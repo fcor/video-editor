@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../Button';
 import './styles.scss';
+import getThumbnail from './utils';
 
 const shouldDisplayButton = (mode, cantDelete) => {
   if (cantDelete || mode === 'PLAYING') return false;
@@ -10,10 +11,16 @@ const shouldDisplayButton = (mode, cantDelete) => {
 
 const Thumbnail = ({ clip, mode, handleDelete, cantDelete, index }) => {
   const displayButton = shouldDisplayButton(mode, cantDelete);
+  // let thumbnail;
+  // if (cantDelete) {
+  //   thumbnail = '../dist/images/tn11.png';
+  // } else {
+  //   thumbnail = getThumbnail();
+  // }
 
   return (
     <div className="thumbnail column">
-      <img src="../dist/images/tn1.png" alt="Thumbnail" />
+      <img src={clip.thumbnail} alt="Thumbnail" />
       <div className="info row">
         <div className="details column">
           <h1>{clip.name}</h1>
