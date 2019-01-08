@@ -104,8 +104,23 @@ class VideoInfo extends React.Component {
     const { actions, clips } = this.props;
     const { start, end, name } = this.state;
     const index = clips.selectedClip;
+    const clip = clips.clipList[index];
     const clipNameUnique = isClipNameUnique(name, clips.clipList);
-    if ((clips.clipList[index].name === name || clipNameUnique) && index !== 1000) {
+    const nameValidation = clip.name === name || clipNameUnique;
+    const inputValidation = start && end && name;
+    const editValidation = start === clip.start && end === clip.end && name === clip.name;
+
+    if (editValidation) {
+      Swal({
+        title: 'Oops!',
+        text: 'Well, it seems that there is nothing to edit.',
+        type: 'error',
+        confirmButtonText: 'Ok',
+      });
+      return;
+    }
+
+    if (nameValidation && inputValidation && index !== 1000) {
       const thumbnail = getThumbnail();
       const newClip = {
         name,
@@ -129,7 +144,7 @@ class VideoInfo extends React.Component {
     } else {
       Swal({
         title: 'Oops!',
-        text: `Change failed. Check out the data you entered, 
+        text: `Something's wrong. Check out the data you entered, 
                remember that clip names must be unique`,
         type: 'error',
         confirmButtonText: 'Ok',
