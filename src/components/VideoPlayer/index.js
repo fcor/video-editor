@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import VideoControls from './VideoControls';
 import './styles.scss';
 
@@ -43,7 +44,7 @@ class VideoPlayer extends React.Component {
             autoPlay
             muted
             preload="metadata"
-            src="../dist/video/blender.mp4"
+            src={clip.url}
             ref={this.video}
             // src={clip.url}
             type="video/mp4"
@@ -52,8 +53,8 @@ class VideoPlayer extends React.Component {
             onTimeUpdate={this.handleTimeUpdate}
             // onKeyPress={this.handleKeyPress}
           />
-          <VideoControls currentTime={currentTimeinPC} handlePlayback={this.handlePlayback} />
         </figure>
+        <VideoControls currentTime={currentTimeinPC} handlePlayback={this.handlePlayback} />
       </div>
     );
   }
@@ -63,4 +64,19 @@ VideoPlayer.propTypes = {
   clip: PropTypes.object.isRequired,
 };
 
-export default VideoPlayer;
+function mapStateToProps(state) {
+  const clips = state.clips.clipList;
+  const selectedClip = state.clips.selectedClip;
+  let clipToPlay;
+  if (selectedClip === 1000) {
+    clipToPlay = { ...state.clips.fullVideoDetails, url: state.clips.baseURL };
+  } else {
+    const url = `${state.clips.baseURL}#t=${clips[selectedClip].start},${clips[selectedClip].end}`;
+    clipToPlay = { ...clips[selectedClip], url };
+  }
+  return {
+    clip: clipToPlay,
+  };
+}
+
+export default connect(mapStateToProps)(VideoPlayer);

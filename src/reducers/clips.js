@@ -3,7 +3,7 @@ import * as actionTypes from '../constants/actionTypes';
 const initialState = {
   selectedClip: 1000,
   clipList: [],
-  baseURL: '../dist/videos/blender.mp4',
+  baseURL: '../dist/video/blender.mp4',
   fullVideoDetails: {
     start: 0,
     end: 52,
