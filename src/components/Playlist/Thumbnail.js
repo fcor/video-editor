@@ -27,8 +27,8 @@ const Thumbnail = ({
   let selected = '';
   if (isSelected) selected = 'selected';
   return (
-    <div className={`thumbnail column ${selected}`} onClick={() => handleSelectedClip(index)}>
-      <img src={clip.thumbnail} alt="Thumbnail" />
+    <div className={`thumbnail column ${selected}`}>
+      <img onClick={() => handleSelectedClip(index)} src={clip.thumbnail} alt="Thumbnail" />
       <div className="info row">
         <div className="details column">
           <h1>{clip.name}</h1>

@@ -20,12 +20,11 @@ class VideoInfo extends React.Component {
     this.handleTyping = this.handleTyping.bind(this);
     this.handleDiscard = this.handleDiscard.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
   }
 
   // setState should not be called in componentDidUpdate in favor
-  // of getDerivedStateFromProps but I think here it's reasonable because
+  // of getDerivedStateFromProps, but I think here it's reasonable because
   // getDerivedStateFromProps does not provide access to prevProps
   componentDidUpdate(prevProps) {
     const { clips } = this.props;
@@ -101,20 +100,41 @@ class VideoInfo extends React.Component {
     });
   }
 
-  handleDelete() {
-    const { actions } = this.props;
-    actions.deleteClip(0);
-  }
-
   handleEdit() {
-    const { actions } = this.props;
+    const { actions, clips } = this.props;
     const { start, end, name } = this.state;
-    const newClip = {
-      name,
-      start,
-      end,
-    };
-    actions.editClip(newClip, 1);
+    const index = clips.selectedClip;
+    const clipNameUnique = isClipNameUnique(name, clips.clipList);
+    if ((clips.clipList[index].name === name || clipNameUnique) && index !== 1000) {
+      const thumbnail = getThumbnail();
+      const newClip = {
+        name,
+        start,
+        end,
+        thumbnail,
+      };
+      actions.editClip(newClip, index);
+      Swal({
+        position: 'top-end',
+        type: 'success',
+        title: 'Your clip has been updated',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      this.setState({
+        start: '',
+        end: '',
+        name: '',
+      });
+    } else {
+      Swal({
+        title: 'Oops!',
+        text: `Change failed. Check out the data you entered, 
+               remember that clip names must be unique`,
+        type: 'error',
+        confirmButtonText: 'Ok',
+      });
+    }
   }
 
   render() {
@@ -122,6 +142,7 @@ class VideoInfo extends React.Component {
     const { start, end, name } = this.state;
     let content;
     if (mode === 'EDITING') {
+      const index = clips.selectedClip;
       content = (
         <Edit
           start={start}
@@ -132,6 +153,7 @@ class VideoInfo extends React.Component {
           handleTyping={this.handleTyping}
           handleDelete={this.handleDelete}
           handleEdit={this.handleEdit}
+          index={index}
         />
       );
     } else {

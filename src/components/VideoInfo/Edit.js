@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Input from '../Input';
 import Button from '../Button';
 
-const Edit = ({ handleTyping, handleSave, handleDiscard, handleEdit, start, end, name }) => (
+const Edit = ({ handleTyping, handleSave, handleDiscard, handleEdit, start, end, name, index }) => (
   <div className="video-info-edit column">
     <div className="video-info-inputs row">
       <Input variant="name" value={name} handleTyping={handleTyping} />
@@ -14,9 +14,11 @@ const Edit = ({ handleTyping, handleSave, handleDiscard, handleEdit, start, end,
     </div>
     <div className="video-info-buttons row">
       <Button onClick={handleSave}>SAVE NEW CLIP</Button>
-      <Button onClick={handleEdit} variant="edit">
-        SAVE CHANGES
-      </Button>
+      {index !== 1000 && (
+        <Button onClick={handleEdit} variant="edit">
+          SAVE CHANGES
+        </Button>
+      )}
       <Button onClick={handleDiscard} variant="discard">
         DISCARD
       </Button>
@@ -32,6 +34,7 @@ Edit.propTypes = {
   start: PropTypes.string.isRequired,
   end: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Edit;

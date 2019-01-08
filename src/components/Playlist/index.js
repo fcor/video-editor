@@ -19,8 +19,11 @@ class Playlist extends React.Component {
   }
 
   handleDelete(index) {
-    const { actions } = this.props;
+    const { actions, clips } = this.props;
     actions.deleteClip(index);
+    // if (index === clips.selectedClip) {
+    //   actions.selectClip(1000);
+    // }
   }
 
   render() {

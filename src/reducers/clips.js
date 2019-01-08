@@ -25,13 +25,18 @@ export default function(state = initialState, action) {
     case actionTypes.DELETE_CLIP: {
       const clips = [...state.clipList];
       clips.splice(action.payload.index, 1);
+      let selectedClip = state.selectedClip;
+      if (action.payload.index === state.selectedClip) {
+        selectedClip = 1000;
+      }
       return {
         ...state,
         clipList: clips,
+        selectedClip,
       };
     }
     case actionTypes.EDIT_CLIP: {
-      const clips = state.clipList;
+      const clips = [...state.clipList];
       clips.splice(action.payload.index, 1, action.payload.clip);
       return {
         ...state,
