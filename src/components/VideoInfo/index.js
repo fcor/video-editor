@@ -24,6 +24,22 @@ class VideoInfo extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
   }
 
+  // setState should not be called in componentDidUpdate in favor
+  // of getDerivedStateFromProps but I think here it's reasonable because
+  // getDerivedStateFromProps does not provide access to prevProps
+  componentDidUpdate(prevProps) {
+    const { clips } = this.props;
+    if (clips.selectedClip !== prevProps.clips.selectedClip && clips.selectedClip !== 1000) {
+      const index = clips.selectedClip;
+      const clip = clips.clipList[index];
+      this.setState({
+        start: clip.start,
+        end: clip.end,
+        name: clip.name,
+      });
+    }
+  }
+
   handleTyping(e, field) {
     this.setState({
       [field]: e.target.value,
