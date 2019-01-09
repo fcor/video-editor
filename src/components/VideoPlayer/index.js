@@ -65,7 +65,6 @@ class VideoPlayer extends React.Component {
     const { hasVideoEnded } = this.state;
     if (this.video.current.paused) {
       if (hasVideoEnded) {
-        // this.video.current.fastSeek(clip.start);
         this.video.current.load();
         this.video.current.play();
         this.setState({
