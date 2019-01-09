@@ -7,7 +7,10 @@ import VideoControls from './VideoControls';
 import './styles.scss';
 
 const getTimeinPC = (currentTime, maxTime) => {
-  return (currentTime * 100) / maxTime;
+  const percent = (currentTime * 100) / maxTime;
+  if (percent < 0) return 0;
+  if (percent > 100) return 100;
+  return percent;
 };
 
 class VideoPlayer extends React.Component {

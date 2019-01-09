@@ -6,9 +6,10 @@ const VideoControls = ({ handlePlayback, currentTime }) => {
   let percent;
   if (currentTime < 0) {
     percent = 0;
-  } else {
-    percent = currentTime;
+  } else if (currentTime > 100) {
+    percent = 100;
   }
+  percent = currentTime;
   return (
     <div className="video-controls column">
       <img
