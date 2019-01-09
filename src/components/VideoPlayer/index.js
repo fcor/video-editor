@@ -104,7 +104,6 @@ class VideoPlayer extends React.Component {
           <video
             // controls
             autoPlay
-            muted
             preload="metadata"
             src={clip.url}
             ref={this.video}

@@ -74,6 +74,8 @@ I used this custom [boilerplate](https://github.com/fcor/react-app) to generate 
 
 All this requirements were met thanks to the power of media fragments for playing and editing capabilities. In terms of video handling (Play/Pause, duration, custom controls etc.) everything is based on [HTMLMediaElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) API.
 
+Thumbnails preview on playlist component are dummy images, they were added as a proof of concept.
+
 ### Bonus Features
 - The ability to automatically jump to the next clip after it finishes, with a 3 second waiting period and appropriate loading animation.
  - The ability to ‘save’ clips for persistent use.
