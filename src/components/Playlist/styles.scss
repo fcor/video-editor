@@ -12,27 +12,31 @@
 
 .thumbnail{
   width: 260px;
-  height: 195px;
-  margin-bottom: 20px;
+  // height: 195px;
+  margin: 0 auto;
+  margin-bottom: 15px;
   padding: 8px;
   animation: animationIn .3s ease-in forwards;
   transition: 0.3s;
   will-change: background-color;
   cursor: pointer;
   img {
-    width: 100%;
+    width: 260px;
+    height: 146px;
     margin-bottom: 5px;
   }
 
-  .row{
-    width: 100%;
+  .info{
+    width: 260px;
+    height: 27px;
     justify-content: space-between !important;
   }
 
   .details{
     align-items: flex-start !important;
     color: var(--gray);
-    width: 100%;
+    width: 260px;
+    height: 27px;
   }
 
   h1{

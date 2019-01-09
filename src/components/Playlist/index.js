@@ -33,7 +33,7 @@ class Playlist extends React.Component {
       return false;
     };
     return (
-      <div className="playlist column">
+      <div className="playlist">
         <Thumbnail
           cantDelete
           clip={clips.fullVideoDetails}
