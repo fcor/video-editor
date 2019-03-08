@@ -1,6 +1,6 @@
 # **Video Editor**
 
-Video editor is a web applications that allows a user to slice up a video into clips.
+Video editor is a web application that allows a user to slice up a video into clips.
 
 **Features**
 - Custom video player.
